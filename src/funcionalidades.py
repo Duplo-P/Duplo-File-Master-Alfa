@@ -26,6 +26,7 @@ def get_caminho():
     
     """
     caminho = filedialog.askdirectory()
+    
     return caminho
 
 def moverArq(arquivo, extensao):
@@ -117,33 +118,35 @@ def organizar():
     Função para organizar os dados do arquivo de entrada.
     
    """
-   
-    # Caminho da pasta a organizar
-    caminho = get_caminho()
-    
-    # Usar o caminho como pasta de trabalho
-    os.chdir(caminho)
-    
-    # Lista de arquivos na pasta
-    lista_arquivos = os.listdir()
-    
-    #Percorendo a lista de arquivos
-    for arquivo in lista_arquivos:
+    try:
+        # Caminho da pasta a organizar
+        caminho = get_caminho()
         
-        # Verifica se o arquivo é um arquivo
-        if os.path.isfile(arquivo):
+        # Usar o caminho como pasta de trabalho
+        os.chdir(caminho)
+        
+        # Lista de arquivos na pasta
+        lista_arquivos = os.listdir()
+        
+        #Percorendo a lista de arquivos
+        for arquivo in lista_arquivos:
             
-            # Separa a extensão do arquivo
-            extensao = os.path.splitext(arquivo)[1]
-            
-            # Verifica a extensão do arquivo e move para a pasta correspondente
-            moverArq(arquivo, extensao)
-    
-    # Organiza os documentos
-    moverDoc("Documentos")
-    
-    # Gera informações das redes sociais em arquivo txt
-    info_arquivo()
-    
-    messagebox.showinfo("Concluído", "Organização concluída com sucesso")
-    
+            # Verifica se o arquivo é um arquivo
+            if os.path.isfile(arquivo):
+                
+                # Separa a extensão do arquivo
+                extensao = os.path.splitext(arquivo)[1]
+                
+                # Verifica a extensão do arquivo e move para a pasta correspondente
+                moverArq(arquivo, extensao)
+        
+        # Organiza os documentos
+        moverDoc("Documentos")
+        
+        # Gera informações das redes sociais em arquivo txt
+        info_arquivo()
+        
+        messagebox.showinfo("Concluído", "Organização concluída com sucesso")
+        
+    except:
+        messagebox.showwarning("Aviso", "Nenhuma pasta selecionada")
