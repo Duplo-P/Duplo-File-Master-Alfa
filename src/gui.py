@@ -18,7 +18,7 @@ class JanelaPrincipal:
         btb_organizar = tk.Button(frm, width = comprimento, background = background_btb, foreground = font_color, font = font_size, text="Organizar")
         btb_organizar.pack(pady = 20)
         
-        btb_ajuda = tk.Button(frm, width = comprimento, background = background_btb, foreground = font_color, font = font_size, text="Ajuda")
+        btb_ajuda = tk.Button(frm, width = comprimento, background = background_btb, foreground = font_color, font = font_size, text="Ajuda", command = self.ajuda)
         btb_ajuda.pack(pady = 20)
         
         btb_sair = tk.Button(frm, width = comprimento, background = background_btb, foreground = font_color, font = font_size, text="Sair", command = self.sair)
@@ -30,7 +30,9 @@ class JanelaPrincipal:
         message = messagebox.askquestion("Sair", "Deseja Sair?")
         if message == "yes":
             self.master.quit()
-
+    def ajuda(self):
+        messagebox.showinfo("Ajuda", "Duplo File Master é um programa para organizar arquivos em pastas de acordo com a extensão do arquivo. Para organizar, clique no botão Organizar. Para sair, clique no botão Sair.")
+        
     def centralizar_janela(self):
         largura_janela = 600
         altura_janela = 400
