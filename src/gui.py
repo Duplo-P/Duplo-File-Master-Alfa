@@ -5,7 +5,6 @@ class JanelaPrincipal:
     def __init__(self, master):
         self.master = master
         master.title("Duplo File Master Alfa 0.1")
-        master.geometry("800x600")
         master.resizable(False, False)
         self.centralizar_janela()
 
@@ -19,8 +18,8 @@ class JanelaPrincipal:
 
 
     def centralizar_janela(self):
-        largura_janela = 800
-        altura_janela = 600
+        largura_janela = 600
+        altura_janela = 400
 
         largura_tela = self.master.winfo_screenwidth()
         altura_tela = self.master.winfo_screenheight()
