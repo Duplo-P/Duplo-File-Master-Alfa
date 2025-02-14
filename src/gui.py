@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
-from funcionalidades import *
+from funcionalidades import organizar
 
 class JanelaPrincipal:
     def __init__(self, master):
