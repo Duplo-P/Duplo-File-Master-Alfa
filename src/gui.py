@@ -1,5 +1,6 @@
 import tkinter as tk
 
+
 class JanelaPrincipal:
     def __init__(self, master):
         self.master = master
