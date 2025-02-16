@@ -10,7 +10,6 @@ Siga-nos nas redes sociais:
     Instagram: @2p_analytcs
     Facebook: Duplo P Analytics
     """
-    #os.chdir(caminho)
 
     if not os.path.exists("info.txt"):
         with open("info.txt", "w") as arquivo:
@@ -36,7 +35,15 @@ def moverArq(arquivo):
     extensao_script = ('.sh', '.bash', '.csh', '.ksh', '.sh', '.zsh', '.cmd', '.ps1', '.psm1', '.psd1', '.ps1xml', '.psc1', '.pssc', '.msh', '.msh1', '.msh2', '.mshxml', '.msh1xml', '.msh2xml')        
     
     # Criação de dicionários para armazenar as extensão
-    arq = {"Audios": extensao_audio, "Videos": extensao_video, "Imagens": extensao_imagem, "Documentos": extensao_doc, "Compactados": extensao_compactado, "Programas": extensao_exe, "Script": extensao_script}
+    arq = {
+        "Audios": extensao_audio, 
+        "Videos": extensao_video, 
+        "Imagens": extensao_imagem, 
+        "Documentos": extensao_doc, 
+        "Compactados": extensao_compactado, 
+        "Programas": extensao_exe, 
+        "Script": extensao_script
+        }
         
         # Verifica a extensão do arquivo e move para a pasta correspondente
         #percorrendo o dicionário
@@ -56,39 +63,15 @@ def moverArq(arquivo):
     if not os.path.exists("Outros Arquivos"):
         os.mkdir("Outros Arquivos")
     os.rename(arquivo, "Outros Arquivos/" + arquivo)
-
-        
-def moverDoc():
-    """Essa função verifica a extensão do arquivo e move para a pasta correspondente,
-    neste caso dentro da pasta Documentos, cria subpastas com base nas extensões. 
-    """
-    NomePasta = "Documentos"
-    extensao_doc = ('.txt', '.doc', '.docx', '.odt', '.pdf', '.rtf', '.tex', '.wpd', '.wps', '.xml', '.msg', '.odt', '.odp', '.ods', '.odg', '.odf', '.sxw', '.sxi', '.sxc', '.sxd', '.sxi', '.sxm', '.sxg', '.stw', '.stc', '.std', '.stc', '.stw', '.sxw', '.sxd', '.sxi', '.sxm', '.sxg', '.sxc', '.sxd')
-
-    os.chdir(NomePasta)
-    lista_doc = os.listdir(os.getcwd())
     
-    for arquivo in lista_doc:
-        if os.path.isfile(arquivo):
-            extensao = os.path.splitext(arquivo)[1]
-            
-            if extensao in extensao_doc:
-                if not os.path.exists(extensao):
-                    os.makedirs(extensao)
-                os.rename(arquivo, os.path.join(extensao, arquivo))
-            else:
-                if not os.path.exists("Arquivos Outros"):
-                    os.makedirs("Arquivos Outros")
-                os.rename(arquivo, os.path.join("Arquivos Outros", arquivo))
-
 def moverDoc():
     """Essa função verifica a extensão do arquivo e move para a pasta correspondente,
     neste caso dentro da pasta Documentos, cria subpastas com base nas extensões. 
     """
 
     NomePasta="Documentos"
-    extensao_doc = ('.txt', '.doc', '.docx', '.odt', '.pdf', '.rtf', '.tex', '.wpd', '.wps', '.xml', '.msg', '.odt', '.odp', '.ods', '.odg', '.odf', '.sxw', '.sxi', '.sxc', '.sxd', '.sxi', '.sxm', '.sxg', '.stw', '.stc', '.std', '.stc', '.stw', '.sxw', '.sxd', '.sxi', '.sxm', '.sxg', '.sxc', '.sxd')
-        
+    extensao_doc = ('.txt', '.doc', '.docx', '.odt', '.pdf', '.rtf', '.tex', '.wpd', '.wps', '.xml', '.msg', '.odt', '.odp', '.ods', '.odg', '.odf', '.sxw', '.sxi', '.sxc', '.sxd', '.sxi', '.sxm', '.sxg', '.stw', '.stc', '.std', '.stc', '.stw', '.sxw', '.sxd', '.sxi', '.sxm', '.sxg', '.sxc', '.sxd', '.pptx', '.ppt', '.pptm', '.potx', '.pot', '.potm', '.ppam', '.ppsx', '.ppsm', '.sldx', '.sldm', '.pot', '.pps', '.ppa', '.ppam', '.ppsx', '.ppsm', '.sldx', '.sldm', '.pot', '.pps', '.ppa', '.ppam', '.ppsx', '.ppsm', '.sldx', '.sldm', '.pot', '.pps', '.ppa', '.ppam', '.ppsx', '.ppsm', '.sldx', '.sldm', '.pot', '.pps', '.ppa', '.ppam', '.ppsx', '.ppsm', '.sldx', '.sldm', '.pot', '.pps', '.ppa', '.ppam', '.ppsx', '.ppsm', '.sldx', '.sldm', '.pot', '.pps', '.ppa', '.ppam', '.ppsx', '.ppsm', '.sldx', '.sldm', '.pot', '.pps', '.ppa', '.ppam', '.ppsx', '.ppsm', '.sldx', '.sldm', '.pot', '.pps', '.ppa', '.ppam', '.ppsx', '.ppsm', '.sldx', '.sldm', '.pot', '.pps', '.ppa', '.ppam', '.ppsx', '.ppsm', '.sldx', '.sldm', '.pot', '.pps', '.ppa', '.ppam', '.ppsx', '.ppsm', '.sldx', '.sldm', '.pot', '.pps', '.ppa', '.ppam', '.ppsx', '.ppsm', '.sldx', '.sldm', '.pot', '.pps', '.ppa', '.ppam', '.ppsx', '.ppsm', '.sldx', '.sldm', '.pot', '.pps', '.ppa', '.ppam', '.ppsx', '.ppsm', '.sldx', '.sldm', '.pot', '.pps', '.ppa', '.ppam', '.ppsx', '.ppsm', '.sldx', '.sldm', '.pot', '.pps', '.ppa')
+    
     # Indica a pasta como a de trabalho(onde vai criar as subpastas)
     os.chdir(NomePasta)
     
@@ -97,32 +80,19 @@ def moverDoc():
     
     # Percorrendo a lista de arquivos
     for arquivo in lista_doc:
+         # Separa a extensão do arquivo
+        extensao = os.path.splitext(arquivo)[1]
         
-        # Verifica se o arquivo é um arquivo
-        if os.path.isfile(arquivo):
-            
-            # Separa a extensão do arquivo
-            extensao = os.path.splitext(arquivo)[1]
-            
-            # Verifica a extensão do arquivo e move para a pasta correspondente
-            if extensao in extensao_doc:
-                
-                # Verifica se a pasta da extensão existe
-                if not os.path.exists(extensao):
-                    
-                    # Se não existir, cria a pasta
-                    os.mkdir(extensao)
-                    
-                # Move o arquivo para a pasta correspondente
-                os.rename(os.getcwd() + "/" + arquivo, os.getcwd() + "/" + extensao + "/" + arquivo)
-            
-            # Se a extensão não estiver na lista de extensões de documentos
-            else:
-                # Cria a pasta Outros, para armazenar os arquivos que as extensões não se encontram.
-                if not os.path.exists("Arquivos Outros"):
-                    
-                    os.mkdir("Arquivos Outros")
-                os.rename(os.getcwd() + "/" + arquivo, os.getcwd() + "/Arquivos Outros/" + arquivo)
+        for ext in extensao_doc:
+            if ext == extensao:
+                if not os.path.exists(ext):
+                    os.mkdir(ext)
+                os.rename(arquivo, ext + '/' + arquivo)
+                break
+        else:
+            if not os.path.exists("Outros Documentos"):
+                os.mkdir("Outros Documentos")
+            os.rename(arquivo, "Outros Documentos/" + arquivo)
 
 def organizar(caminho):
     """
@@ -145,8 +115,9 @@ def organizar(caminho):
             # Verifica a extensão do arquivo e move para a pasta correspondente
             moverArq(arquivo)
     
-    # Organiza os documentos
-    #moverDoc("Documentos")
-    
     # Gera informações das redes sociais em arquivo txt
     info_arquivo()
+    
+    # Organiza os documentos
+    moverDoc()
+    
