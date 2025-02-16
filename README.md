@@ -10,12 +10,15 @@ Duplo File Master Alfa é um programa desenvolvido em Python com uma interface g
 - **Sair**: Fecha o programa.
 
 ## Estrutura do Projeto
-Duplo-File-Master-Alfa/ 
-├── src/ │ 
-├── gui.py │ 
-├── funcionalidades.py 
-├── README.md
 
+```
+Duplo-File-Master-Alfa/
+├── src/
+│   ├── main.py
+│   ├── gui.py
+│   ├── funcionalidades.py
+├── README.md
+```
 ## Instalação
 
 1. Clone o repositório:
@@ -32,7 +35,7 @@ Duplo-File-Master-Alfa/
 
 ## Uso
 
-1. Execute o arquivo [main.py](http://_vscodecontentref_/2):
+1. Execute o arquivo main.py:
     ```bash
     python src/main.py
     ```
@@ -44,135 +47,23 @@ Duplo-File-Master-Alfa/
 
 ## Código Principal
 
-### [main.py](http://_vscodecontentref_/3)
+### main.py
 
-Este arquivo contém a definição da interface gráfica do programa.
+Este arquivo contém a definição necessárias para excutar o programa.
 
 ```python
 import tkinter as tk
-from tkinter import messagebox, filedialog
-from funcionalidades import organizar, info_arquivo
+from gui import JanelaPrincipal  
+# Importa a classe da sua interface gráfica
 
-class JanelaPrincipal:
-    def __init__(self, master):
-        self.master = master
-        master.title("Duplo File Master Alfa 0.1")
-        master.resizable(False, False)
-        self.master.config(bg = "#201f1f")
-        self.centralizar_janela()
-        comprimento = 18
-        background_btb = "#000000"
-        font_color = "#FFFFFF"
-        font_size = ("Helvetica", 14)
-        font_size_verson = ("Helvetica", 9, "italic")
-        
-        # Criação dos widgets da interface
-        frm = tk.Frame(self.master, bg = "#201f1f")
-        
-        btb_organizar = tk.Button(frm, width = comprimento, background = background_btb, foreground = font_color, font = font_size, text="Organizar", command = self.organizar)
-        btb_organizar.config(cursor = "hand2")
-        btb_organizar.pack(pady = 20)
+def main():
+    root = tk.Tk()
+    janela = JanelaPrincipal(root)
+    root.mainloop()
 
-        btb_ajuda = tk.Button(frm, width = comprimento, background = background_btb, foreground = font_color, font = font_size, text="Ajuda", command = self.ajuda)
-        btb_ajuda.pack(pady = 20)
-        btb_ajuda.config(cursor = "hand2")
-
-        btb_sair = tk.Button(frm, width = comprimento, background = background_btb, foreground = font_color, font = font_size, text="Sair", command = self.sair)
-        btb_sair.pack(pady = 20)
-        btb_sair.config(cursor = "hand2")
-
-        frm.pack(pady = 80)
-        
-        lbl_versao = tk.Label(self.master, text = "Duplo P Analytics - Versão 0.1   ", font = font_size_verson, bg = "#201f1f", fg = "#ffffff")
-        lbl_versao.pack(side = "bottom", anchor="se")
-    
-    def info(self):
-        try:
-            if self.caminho:
-                info_arquivo(self.caminho) 
-        except Exception as e:
-            messagebox.showerror(f"Erro", "Erro ao gerar informações do arquivo {e}")
-        
-    def organizar(self):
-        self.caminho = filedialog.askdirectory(parent=self.master, title="Selecione a pasta para organizar")
-        try:
-            if self.caminho:
-                organizar(self.caminho) 
-                messagebox.showinfo("Sucesso", "Arquivos organizados com sucesso!")
-        except Exception as e:
-            messagebox.showerror(f"Erro", "Erro ao organizar arquivos {e}")
-             
-    def sair(self):
-        message = messagebox.askquestion("Sair", "Deseja Sair?")
-        if message == "yes":
-            self.master.quit()
-            
-    def ajuda(self):
-        messagebox.showinfo("Ajuda", "Duplo File Master é um programa para organizar arquivos em pastas de acordo com a extensão do arquivo. Para organizar, clique no botão Organizar. Para sair, clique no botão Sair.")
-        
-    def centralizar_janela(self):
-        largura_janela = 600
-        altura_janela = 400
-
-        largura_tela = self.master.winfo_screenwidth()
-        altura_tela = self.master.winfo_screenheight()
-
-        pos_x = (largura_tela // 2) - (largura_janela // 2)
-        pos_y = (altura_tela // 2) - (altura_janela // 2)
-
-        self.master.geometry(f"{largura_janela}x{altura_janela}+{pos_x}+{pos_y}")
-
-Aqui está um exemplo de um arquivo README para o seu programa "Duplo File Master Alfa":
-
-```markdown
-# Duplo File Master Alfa 0.1
-
-Duplo File Master Alfa é um programa desenvolvido em Python com uma interface gráfica usando Tkinter. Ele organiza arquivos em pastas com base em suas extensões, facilitando a organização de diretórios com muitos arquivos.
-
-## Funcionalidades
-
-- **Organizar Arquivos**: Move arquivos para pastas específicas com base em suas extensões.
-- **Gerar Informações**: Cria um arquivo `info.txt` com informações sobre as redes sociais do Duplo P Analytics.
-- **Ajuda**: Exibe uma mensagem de ajuda com informações sobre o programa.
-- **Sair**: Fecha o programa.
-
-## Estrutura do Projeto
-
+if __name__ == "__main__":
+    main()
 ```
-Duplo-File-Master-Alfa/
-├── src/
-│   ├── gui.py
-│   ├── funcionalidades.py
-├── README.md
-```
-
-## Instalação
-
-1. Clone o repositório:
-    ```bash
-    git clone https://github.com/seu-usuario/Duplo-File-Master-Alfa.git
-    ```
-
-2. Navegue até o diretório do projeto:
-    ```bash
-    cd Duplo-File-Master-Alfa
-    ```
-
-3. Instale as dependências necessárias (se houver).
-
-## Uso
-
-1. Execute o arquivo gui.py:
-    ```bash
-    python src/gui.py
-    ```
-
-2. A interface gráfica será aberta com as seguintes opções:
-    - **Organizar**: Clique neste botão para selecionar um diretório e organizar os arquivos dentro dele.
-    - **Ajuda**: Clique neste botão para exibir uma mensagem de ajuda.
-    - **Sair**: Clique neste botão para fechar o programa.
-
-## Código Principal
 
 ### gui.py
 
@@ -347,3 +238,5 @@ Se você quiser contribuir para o projeto, sinta-se à vontade para abrir uma is
 
 Este projeto está licenciado sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
 ```
+Autor: Pedrito Pedro
+Por: Duplo P Analytics
